@@ -5,6 +5,19 @@
         <link rel="stylesheet" type="text/css" href="logstyle.css">
     </head>
     <body>
+        <header>
+            <nav>
+                <h3 id="header-title">
+                    <a href="/dente/biblioteca/index.html">
+                        Biblioteca Online
+                    </a>
+                </h3>
+                <ul>
+                    <li><a href="registration.php"> Registrazione </a></li>
+                    <li><a href="login.php">Login</a></li>
+                </ul>
+            </nav>
+        </header>
         <div class="center">
             <h1> Registrazione </h1>
             <form action="<?php echo $_SERVER['PHP_SELF']?>" method="POST">
@@ -29,12 +42,14 @@
                     $domain = explode('@', $email)[1];
                     if ($domain != 'daronco.edu.it') {
                         echo "<h2> questo domain non è accettabile, riprova con '@daronco.edu.it' </h2>";
+                        header("refresh:2;url=registration.php");
                         return;
                     }
                     
                     $check = "SELECT * FROM tblUtenti WHERE eMail = '$email'";
                     if ((($db -> query($check)) -> num_rows) > 0) {
                         echo "<h2> email già registrata, passa al login! </h2>";
+                        header("refresh:2;url=registration.php");
                         return;
                     }
 
@@ -42,6 +57,7 @@
                     $conferma_autenticazione = md5($_POST['confirm-password']);
                     if ($autenticazione != $conferma_autenticazione) {
                         echo "<h2>le due password non corrispondono!</h2>";
+                        header("refresh:2;url=registration.php");
                         return;
                     }
 
@@ -49,6 +65,7 @@
                     $risultato = $db -> query($registra);
                     if (!$risultato) {
                         echo "<h2>UTENTE NON REGISTRATO</h2>";
+                        header("refresh:2;url=registration.php");
                         return;
                     }
 

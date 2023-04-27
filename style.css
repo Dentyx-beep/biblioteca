@@ -1,47 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,700;1,400&display=swap');
+html {
+	font-family: 'Lato', sans-serif;
+}
+
 body {
-	font-family: Arial, sans-serif;
-	background-color: #f2f2f2;
+
+	/*font-family: Arial, sans-serif;*/
+	background-color: #fafafa;
 	margin: 0;
 	padding: 0;
-}
-
-header {
-	background-color: #333;
-	color: #fff;
-}
-
-nav ul {
-	list-style: none;
-	margin: 0;
-	padding: 0;
+	box-sizing: border-box;
 	display: flex;
+	flex-direction: column;
+	height: 100vh;
 }
 
-nav li {
-	margin: 0 10px;
+ul {
+	list-style: none;
 }
 
-nav a {
-	color: #fff;
+a {
 	text-decoration: none;
+	color: currentColor;
 }
 
-main {
-	padding: 50px;
+
+header{
+	background-color: #429cf6;
+	color:  rgb(228, 237, 245) ;
 }
 
-h1 {
+header>nav {
+	padding: 10px 25px;
+	display: flex;
+	justify-content: space-between;
+}
+
+header #header-title {
+	font-size: 22px;
+}
+
+header ul {
+	display: flex;
+	gap: 10px;
+	align-items: center;
+}
+
+header ul>li{
+	transition: all 300ms ease-in-out;
+}
+
+header ul>li:hover{
+	transform: scale(1.1);
+	font-weight: bold;
+
+}
+
+main{
+	flex-grow: 1;
+}
+
+#hero {
+	height: calc(100vh - 100px);
+	background: rgb(188,219,251);
+	background: linear-gradient(345deg, rgba(188,219,251,1) 35%, rgba(66,156,246,1) 35%);
+	display: grid;
+	place-items: center;
+}
+
+.hero-wrapper {
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+	color:  rgb(228, 237, 245) ;
+}
+
+.hero-wrapper h1 {
+	font-weight: bold;
 	font-size: 36px;
 }
 
-p {
-	font-size: 16px;
-	line-height: 1.5;
+.hero-wrapper p {
+	font-size: 24px;
 }
 
-footer {
-	background-color: #333;
-	color: #fff;
+.hero-wrapper button {
+	padding: 6px 20px;
+	border: 0;
+	border-radius: 9999px;
+	font-size: 18px;
+	background-color: rgb(228, 237, 245);
+	color: #429cf6;
+}
+
+.hero-wrapper .buttons {
+	display: flex;
+	width: 100%;
+	justify-content: center;
+	gap: 20px;
+}
+
+footer{
 	text-align: center;
-	padding: 20px;
+	padding: 20px 0;
+	background-color:rgb(8, 25, 41) ;
+	color:  rgb(228, 237, 245) ;
 }

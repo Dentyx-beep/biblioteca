@@ -2,44 +2,31 @@ DROP DATABASE dbBiblioteca;
 CREATE DATABASE dbBiblioteca;
 USE dbBiblioteca;
 
-CREATE TABLE tblUtenti
-(
+CREATE TABLE tblUtenti(
 	eMail VARCHAR(69) PRIMARY KEY NOT NULL,
 	pass VARCHAR(64) NOT NULL,
 	ifadmin boolean DEFAULT 0
 );
 
-CREATE TABLE tblPrestiti
-(
-	idPrestito INTEGER AUTO_INCREMENT PRIMARY KEY NOT NULL,
-	dataPrestito DATE NOT NULL,
-	dataRestituzione DATE NOT NULL,
-	utente VARCHAR(69) NOT NULL,
-	FOREIGN KEY (utente) REFERENCES tblUtenti(eMail) 
-);
+/*
+CREATE TABLE tblPrestiti(
+    idPrestito INTEGER AUTO_INCREMENT PRIMARY KEY NOT NULL,
+    dataPrestito DATE NOT NULL,
+    dataRestituzione DATE NOT NULL,
+    utente VARCHAR(69) NOT NULL,
+    libro CHAR(16) NOT NULL,
+    CONSTRAINT fk_tblPrestiti_tblUtenti FOREIGN KEY (utente) REFERENCES tblUtenti(eMail),
+    CONSTRAINT fk_tblPrestiti_tblLibri FOREIGN KEY (libro) REFERENCES tblLibri(ISBN)
+);*/
 
-CREATE TABLE tblCode(
-	idCoda INTEGER AUTO_INCREMENT PRIMARY KEY NOT NULL,
-	dataPrenotazione DATE NOT NULL,
-	prestito INTEGER NOT NULL,
-	utente INTEGER,
-	FOREIGN KEY (prestito) REFERENCES tblPrestiti(idPrestito) 
-);
-
-CREATE TABLE tblCopie(
-	idCopia INTEGER AUTO_INCREMENT PRIMARY KEY NOT NULL,
-	dataPrenotazione DATE NOT NULL,
-	prestito INTEGER NOT NULL,
-	FOREIGN KEY (prestito) REFERENCES tblPrestiti(idPrestito) 
-);
-
-CREATE TABLE tblCopieInPrestito(
-	prestito INTEGER NOT NULL,
-	copia INTEGER NOT NULL,
-	statoConservazione VARCHAR(64) NOT NULL,
-	PRIMARY KEY(prestito,copia),
-	FOREIGN KEY (prestito) REFERENCES tblPrestiti(idPrestito),
-	FOREIGN KEY (copia) REFERENCES tblCopie(idCopia)
+CREATE TABLE tblPrestiti (
+  idPrestito INT AUTO_INCREMENT PRIMARY KEY,
+  dataPrestito DATE NOT NULL,
+  dataRestituzione DATE NOT NULL,
+  utente VARCHAR(69) NOT NULL,
+  libro VARCHAR(16) NOT NULL,
+  FOREIGN KEY (utente) REFERENCES tblUtenti(eMail) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  FOREIGN KEY (libro) REFERENCES tblLibri(ISBN) ON DELETE RESTRICT ON UPDATE RESTRICT
 );
 
 CREATE TABLE tblGeneri(
@@ -55,28 +42,6 @@ CREATE TABLE tblLibri(
 	numPagine INTEGER NOT NULL,
 	preso BOOLEAN DEFAULT 0,
 	FOREIGN KEY (genere) REFERENCES tblGeneri(nome) 
-);
-
-CREATE TABLE tblAutori(
-	idAutore INTEGER AUTO_INCREMENT PRIMARY KEY NOT NULL,
-	nominativo VARCHAR(64) NOT NULL,
-	dataNascita DATE NOT NULL,
-	dataMorte DATE,
-	bibliografia VARCHAR(128) NOT NULL
-);
-
-CREATE TABLE tblAutoriScrivonoLibri(
-	autore INTEGER NOT NULL,
-	libro varchar(16) NOT NULL,
-	FOREIGN KEY (autore) REFERENCES tblAutori(idAutore),
-	FOREIGN KEY (libro) REFERENCES tblLibri(ISBN)
-);
-
-CREATE TABLE tblUtenteInCoda(
-	coda INTEGER NOT NULL,
-	utente VARCHAR(69),
-	FOREIGN KEY (coda) REFERENCES tblCode(idCoda),
-	FOREIGN KEY (utente) REFERENCES tblUtenti(eMail)
 );
 
 INSERT INTO tblUtenti VALUES ("dente.francesco@daronco.edu.it", "4a7d1ed414474e4033ac29ccb8653d9b", 1 );

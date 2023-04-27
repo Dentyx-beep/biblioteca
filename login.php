@@ -5,6 +5,20 @@
         <link rel="stylesheet" type="text/css" href="logstyle.css">
     </head>
     <body>
+        <header>
+            <nav>
+                <h3 id="header-title">
+                    <a href="/dente/biblioteca/index.html">
+                        Biblioteca Online
+                    </a>
+                </h3>
+                <ul>
+                    <li><a href="registration.php"> Registrazione </a></li>
+                    <li><a href="login.php">Login</a></li>
+                </ul>
+            </nav>
+        </header>
+
         <div class="center">
             <h1> Login </h1>
             <form action="<?php echo $_SERVER['PHP_SELF']?>" method="POST">
@@ -47,7 +61,7 @@
                     } else{
                         echo "<h2> Hai inserito dati errati </h2>";
                         echo "<h2> Stai per essere reindirizzato </h2>";
-                        header("refresh:3;url=Login.php");
+                        header("refresh:2;url=Login.php");
                     }
                 }
     

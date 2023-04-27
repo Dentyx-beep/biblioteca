@@ -1,21 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,700;1,400&display=swap');
+html {
+	font-family: 'Lato', sans-serif;
+}
+
+body{
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-color:  rgba(188,219,251,1);
+}
+
 .center {
     margin: auto;
     width: 50%;
     text-align: center;
+    max-width: 500px;
+    padding: 0 50px;
 }
 
 form {
     margin: auto;
-    width: 50%;
+    width: 70%;
     padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 h1 { 
     text-align: center;
-    color: violet;
+    color: #429cf6;
 }
 
 h2 {
     text-align: center;
     color: red;
+}
+
+
+input {
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: 0;
+    width: 100%;
+}
+
+input[type='submit'] {
+	padding: 6px 20px;
+	border: 0;
+	border-radius: 9999px;
+	font-size: 18px;
+	background-color: rgb(228, 237, 245);
+	color: #429cf6;
+}
+
+ul {
+	list-style: none;
+}
+
+a {
+	text-decoration: none;
+	color: currentColor;
+}
+
+
+header{
+	background-color: #429cf6;
+	color:  rgb(228, 237, 245) ;
+}
+
+header>nav {
+	padding: 10px 25px;
+	display: flex;
+	justify-content: space-between;
+}
+
+header #header-title {
+	font-size: 22px;
+}
+
+header ul {
+	display: flex;
+	gap: 10px;
+	align-items: center;
+}
+
+header ul>li{
+	transition: all 300ms ease-in-out;
+}
+
+header ul>li:hover{
+	transform: scale(1.1);
+	font-weight: bold;
+
 }
